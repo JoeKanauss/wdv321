@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Use Regular Expressions</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+$(document).ready(function(){
+
+var zipIn = $("#zip").val();
+var emailRegEx = new RegExp( /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+var phoneRegEx = new RegExp(/^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/);
+var zipRegEx = new RegExp(/^\d{5}$/);
+var replaceRegEx = new RegExp(/['\/<>]/);
+
+//validate email address
+	$("#validateEmail").click(function(){
+		var emailIn = $("#email").val();
+		var emailAnswer = emailRegEx.test(emailIn);
+		if(emailAnswer == false)
+		{
+			$(".emailError").html("The email address does not match the expected format");
+			$(".emailSuccess").html("");
+		}
+		else
+		{
+			$(".emailError").html("");
+			$(".emailSuccess").html("The email address is valid!");
+		}
+	});
+//validate phone number
+	$("#validatePhone").click(function(){
+		var phoneIn = $("#phone").val();
+		var phoneAnswer = phoneRegEx.test(phoneIn);
+		if(phoneAnswer == false)
+		{
+			$(".phoneError").html("The phone number does not match the expected format");
+			$(".phoneSuccess").html("");
+		}
+		else
+		{
+			$(".phoneError").html("");
+			$(".phoneSuccess").html("The phone number is valid!");
+		}
+	});
+//validate zip code
+	$("#validateZip").click(function(){
+		var zipIn = $("#zip").val();
+		var zipAnswer = zipRegEx.test(zipIn);
+		if(zipAnswer == false)
+		{
+			$(".zipError").html("The zip code does not match the expected format");
+			$(".zipSuccess").html("");
+		}
+		else
+		{
+			$(".zipError").html("");
+			$(".zipSuccess").html("The zip code is valid!");
+		}
+	});
+//replace symbols
+	$("#validateReplace").click(function(){
+		var replaceIn = $("#replace").val();
+		var replaceAnswer = replaceRegEx.test(replaceIn);
+		var replaceOut = replaceIn.replace(/['\/<>]/g, "-");
+		if(replaceAnswer == false)
+		{
+			$(".replaceError").html("No replaceable symbols were found");
+			$(".replaceSuccess").html("");
+		}
+		else
+		{
+			$(".replaceError").html("");
+			$(".replaceSuccess").html("Here is the text with replaced symbols: "+replaceOut);
+		}
+		
+	});
+
+});
+</script>
+
+<style>
+.emailError, .phoneError, .zipError, .replaceError {
+	color: red;
+	font-weight: bold;
+	font-style: italic;
+}
+.emailSuccess, .phoneSuccess, .zipSuccess, .replaceSuccess {
+	color: green;
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+
+</head>
+<body>
+<div id="contain">
+
+<h1>Use Regular Expressions</h1>
+
+<p><input type="text" id="email" size="35" placeholder="Email Address" /> <button id="validateEmail">Validate Email</button> <span class="emailError"></span><span class="emailSuccess"></span></p>
+<p><input type="text" id="phone" size="35" placeholder="Phone Number (xxx-xxx-xxxx)"> <button id="validatePhone">Validate Phone Number</button> <span class="phoneError"></span><span class="phoneSuccess"></span></p>
+<p><input type="text" id="zip" size="35" placeholder="Zip Code (xxxxx)"> <button id="validateZip">Validate Zip Code</button> <span class="zipError"></span><span class="zipSuccess"></span></p>
+<p><input type="text" id="replace" size="35" placeholder="Symbols ' / < >"> <button id="validateReplace">Replace Symbols</button> <span class="replaceError"></span><span class="replaceSuccess"></span></p>
+
+</div>
+</body>
+</html>

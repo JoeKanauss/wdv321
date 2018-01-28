@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Review</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="contain">
+
+<h1>Javascript Review</h1>
+
+<!--TODAY'S DATE function -->
+<h2>[ TODAY'S DATE ]</h2>
+<script>
+function date()
+{
+	var d = new Date();
+	document.write(d.toDateString());
+}
+date();
+</script>
+
+<!-- form for PRICE and QUANTITY; button to PULL INFO and MULTIPLY and DISPLAY CORRECTLY and FORMATTED; display result within span element in paragraph saying "YOUR TOTAL PRICE WILL BE: result!"-->
+<h2>[ FORM AND RESULTS ]</h2>
+<script>
+function multiply()
+{
+	var price = document.getElementById("price").value;
+	var quantity = document.getElementById("quantity").value;
+	var result = parseFloat(price)*parseFloat(quantity);
+	var formattedResult = "$"+result.toFixed(2);
+	
+	document.getElementById("result").innerHTML = formattedResult;
+}
+</script>
+
+<form>
+<p><input type="text" id="price" placeholder="Enter Price" /></p>
+<p><input type="text" id="quantity" placeholder="Enter Quantity" /></p>
+<p><input type="button" value="Multiply!" onclick="multiply();" /></p>
+</form>
+<p> Your Total Price will be: <strong><em><span id="result">Result Goes Here</span>!</em></strong></p>
+
+<!--create ARRAY with 3 TEAM NAMES; runtime function that uses LOOP to DISPLAY TEAM NAMES, each on a new line; TEAM #: team name -->
+<h2>[ TEAM LIST ]</h2>
+
+<script>
+var teams = ["Lions","Tigers","Bears"];
+
+for (var x=0;x<3;x++)
+{
+	var teamNum = x+1;
+	document.write("<p>Team "+teamNum+": "+teams[x]+"</p>");
+}
+</script>
+</div>
+</body>
+</html>

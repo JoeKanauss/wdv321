@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+$(document).ready(function(){
+	
+	$("#select").change(function(){
+		if( $("select#select").val() == "van" )
+		{
+			$.get("ATPphp.php", function(data){
+				var vanData = JSON.parse(data);
+				$("#desc").html(vanData.description);
+				$("#price").html(vanData.price);
+				$("#image").html(vanData.image);
+			
+			});
+		}
+		else if( $("select#select").val() == "choc" )
+		{
+			$("#desc").html("A chocolate cupcake.");
+			$("#price").html("$3.59");
+			$("#image").html("<img src='choccup.jpg' />");
+		}
+		else if( $("select#select").val() == "red" )
+		{
+			$("#desc").html("A red velvet cupcake.");
+			$("#price").html("$4.99");
+			$("#image").html("<img src='redcup.jpg' />");
+		}
+	
+	});
+});
+</script>
+
+<style type="text/css">
+.bold {
+	font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<h1>WDV321 Advanced Javascript</h1>
+<h2>AJAX Team Project</h2>
+<h3>Team Members: </h3>
+<p>Mujo, Tom, Joe</p>
+<p>&nbsp;</p>
+<form name="form1" method="post" action="">
+  <h2>TRICK OR TREAT!!!</h2>
+  <p>Make your choice: 
+    <label>
+      <select name="select" id="select">
+        <option value="van">Vanilla Cupcake</option>
+        <option value="choc">Chocolate Cupcake</option>
+        <option value="red">Red Velvet Cupcake</option>
+      </select>
+    </label>
+  </p>
+  <p>Description:<span id="desc"></span></p>
+  <p>Price:<span id="price"></span></p>
+  <p><span id="image">Image</span></p>
+  <p>
+    <input type="submit" name="button" id="button" value="Submit">
+    <input type="submit" name="button2" id="button2" value="Submit">
+  </p>
+</form>
+<p class="bold">Extra Credit:</p>
+<p>Use an Ajax call to dynamically change the select to a choice of candy instead of cupcakes. Include the appropriate server side information. </p>
+</body>
+</html>

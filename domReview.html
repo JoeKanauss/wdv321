@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOM Review</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="contain">
+<h1>DOM Review</h1>
+
+<h2>[ Document Object ]</h2>
+<p>The document object is what the HTML document becomes when it is loaded into a browser. It is the “root node” of the document, and it contains all other nodes (element nodes, text nodes, attribute nodes, and comment nodes). These nodes can be accessed with properties and methods provided by the document object from JavaScript.</p>
+<h2>[ Describe how the Browser Renders HTML and CSS into the Document Object ]</h2>
+<p>When the browser renders HTML and CSS into the document object it first creates the DOM (Document Object Model) and CSSOM (CSS Object Model) Trees. The DOM Tree contains the document object nodes that match up with HTML elements, while the CSSOM Tree contains the nodes that match up with CSS selectors. </p>
+<p>Next, the browser matches the nodes from both trees to their corresponding HTML elements and CSS selectors to make up what is called the Render Tree. This tree does NOT contain hidden elements or elements in the document head. The browser then uses the Render Tree to create the image that is seen on the screen.</p>
+<h2>[ Node ]</h2>
+<p>Nodes are parts of the document object, with the “root node” being the document object itself. Other nodes are the Element Nodes, which are HTML elements, the Attribute Nodes, which are HTML attributes, Text Nodes, which are the texts inside of the HTML elements, and Comment Nodes, which are the HTML document comments.</p>
+<h2>[ Tree Structure ]</h2>
+<p>The structure of the document object model is known as a tree structure as it begins with a single root (the document Object), which contains multiple nodes (such as element nodes of paragraphs or headers or div-sections), and these, in turn, can contains several child nodes themselves. Much like a tree, if a section is cut out, any contained sections are as well.</p>
+<h2>[ Event Model or Event Handlers ]</h2>
+<p>Event models, or handlers, are the document object model’s way of allowing JavaScript to react to events. An event, such as clicking the mouse, the page completing loading, a cursor hover, or key stroke, can be used to call a JavaScript function.</p>
+</div>
+</body>
+</html>

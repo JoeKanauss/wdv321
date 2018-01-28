@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+//make Div with id "draggable" a JQuery UI draggable
+$(function(){
+	$("#draggable").draggable({
+		containment: "parent",
+		handle: "h3",
+		snap: "#snapLocal",
+		snapmode: "outer",
+		cursor: "move"
+	});
+});
+//Turn off draggable when clicked
+$(document).ready(function(){
+	$("#disable").click(function(){
+		$("#draggable").draggable("option", "disabled", true);
+	});
+});
+//Turn on draggable when clicked
+$(document).ready(function(){
+	$("#enable").click(function(){
+		$("#draggable").draggable("option", "disabled", false);
+	});
+});
+
+</script>
+
+<style>
+#draggable{
+	width: 200px;
+	height: 200px;
+	background-color: green;
+}
+#arena{
+	width: 1000px;
+	height: 1000px;
+	background-color: pink;
+}
+#snapLocal{
+	width: 50px;
+	height: 50px;
+	background-color: red;
+}
+</style>
+</head>
+<body>
+<div id="arena">
+<h2>Arena</h2>
+<input type="button" id="disable" value="Disable Dragging">
+<input type="button" id="enable" value="Enable Dragging">
+
+<div id="draggable">
+<h3>Grab here and drag!</h3>
+<p>You can drag me around!</p>
+</div>
+
+<div id="snapLocal">
+<p>snap local</p>
+</div>
+<div>
+</body>
+</html>

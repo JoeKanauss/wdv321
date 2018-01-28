@@ -1,0 +1,76 @@
+<html>
+<head>
+<script src="js/jquery-3.2.1.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="js/cookieFunctions.js"></script>
+<script>
+$(document).ready(function(){
+
+	var lastSection = [];
+	
+	$("#tabs").tabs({
+	activate: function(){
+		var activeTab = $("#tabs").tabs("option","active");
+		
+		alert(activeTab);
+		
+		/* if(activeTab == 1)
+		{
+			lastSection.push("chili");
+		}
+		
+		if(activeTab == 2)
+		{
+			lastSection.push("zucchini bread");
+		}
+		if(activeTab ==3)
+		{
+			lastSection.push("guacamole");
+			alert(lastSection[lastSection.length-2]);
+		}
+		
+		
+		
+		}
+	}); */
+
+	
+	
+	
+	
+	
+	}
+	});
+});
+</script>
+</head>
+<body>
+
+<div id="tabs">
+<ul>
+<li><a href="#front">Dynamic Recipes</a></li>
+<li id="chiliTab"><a href="#chili">Crockpot Chili</a></li>
+<li id="r2Tab"><a href="#recipe2">Zucchini Bread</a></li>
+<li id="r3Tab"><a href="#recipe3">Guacamole</a></li>
+</ul>
+
+<div id="front">
+<h1>Dynamic Recipes</h1>
+</div>
+
+<div id="chili">
+<h1>Chili</h1>
+</div>
+
+<div id="recipe2">
+<h1>Recipe 2</h1>
+</div>
+
+<div id="recipe3">
+<h1>Recipe 3</h1>
+</div>
+
+</body>

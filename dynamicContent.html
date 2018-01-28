@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Content</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src = "js/jquery-3.2.1.js"></script>
+
+<script>
+var products = ["--- Select a product ---", "books", "pens", "pencils", "erasers", "rulers", "staplers"];
+var colors = ["--- Select a color ---", "red", "blue", "yellow", "green", "orange", "purple"];
+
+$(document).ready(function(){
+
+	$("input[type=radio][name=category]").change(function(){
+		//alert("hi!");
+		if($("input[type=radio][name=category]:checked").val() == "products")
+		{
+			$("#dropdown").css("display", "inline");
+			var options ="";
+			$.each(products, function(){
+				options += "<option class='ddprod' value='"+this+"'>"+this+"</option>";
+				$("#dropdown").html(options);
+				$("#dropdown").css("background-color","#dbbef4");
+			});
+		}
+		else
+		{
+			$("#dropdown").css("display", "inline");
+			var options ="";
+			$.each(colors, function(){
+				options +=("<option class='ddcolor' value='"+this+"'>"+this+"</option>");
+				$("#dropdown").html(options);
+				$("#dropdown").css("background-color","#ffb3e0");
+			});
+		}
+	});
+
+});
+</script>
+
+<style>
+#dropdown{
+	display: none;
+	font-size: 1.05em;
+}
+.ddprod{
+	background-color: #b5e3e1;
+}
+.ddcolor{
+	background-color: #feec9a;
+}
+</style>
+</head>
+<body>
+<div id="contain">
+<!-- When the Products radio button is selected change the options of the Results Drop Down box to only show the contents of the products array as the options.
+When the Colors radio button is selected change the options of the Results Drop Down box to only show the contents of the colors array as the options. -->
+
+<h1>Dynamic Content</h1>
+<h2>Loading arrays into drop down menu after selecting category</h2>
+
+<p>Select a Category:</p>
+<p>Products<input type="radio" id="products" name="category" value="products" /> 
+	Colors<input type="radio" id="colors" name="category" value="colors" /></p>
+<select id="dropdown">
+</select>
+</div>
+</body>
+</html>

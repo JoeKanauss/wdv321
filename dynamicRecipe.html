@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Recipe</title>
+<script src = "js/jquery-3.2.1.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src = "js/cookieFunctions.js"></script>
+<script src = "js/timeSpentCookie.js"></script>
+<script src = "js/timeOnSection.js"></script>
+
+<script>
+$(function(){
+	$("#tabs").tabs();
+});
+
+$(function(){
+	$("#image1").tooltip({
+		content: "<h2>Instructor-given recipe example</h2><p>Image from BettyCrocker.com</p> ",
+		items: "img",
+		show: {effect: "blind"},
+		hide: {effect: "blind"}
+	});
+	$("#image2").tooltip({
+		content: "<h2>Betty Crocker Recipe</h2><p>Image from BettyCrocker.com</p> ",
+		items: "img",
+		show: {effect: "blind"},
+		hide: {effect: "blind"}
+	});
+	$("#image3").tooltip({
+		content: "<h2>Food Network Recipe</h2><p>Image from Pixabay.com</p> ",
+		items: "img",
+		show: {effect: "blind"},
+		hide: {effect: "blind"}
+	});
+});
+
+$(document).ready(function(){
+
+// ---------------------------------- R E C I P E    O N E ------------------------------------
+
+	//ON PORTION CHANGE
+	$("input[type=radio][name=r1Portion]").change(function(){
+	
+		//FULL PORTION
+		if($("input[type=radio][name=r1Portion]:checked").val() == "full")
+			{
+				$("#chiliServe").html("6");
+				$("#chiliPrepTime").html("25");
+				$("#chiliCookTime").html("6");
+				$("#r1IngredientsList").html("2 tbsp. cooking oil<br>1 cup onion<br>1 cup chopped peppers<br>4 tbsp. Chili powder<br>1 tsp. Hot chili powder (optional)<br>1 lb ground beef or chicken<br>2 cans Red Beans<br>2 cans Kidney Beans<br>2 cans Tomato Puree<br>2 cans Tomato Sauce<br>1 cup shredded cheese (optional)<br>1/2 cup sour cream (optional)");
+				$("#r1Prep").html("<p>Heat cooking oil in 2 quart skillet.<br>Saute onions and peppers for 5 minutes.<br>Add spices and stir for 30 seconds.<br>Add meat and cook until browned. Approximately 15 minutes.<br>Pour contents of skillet into 3 quart crock pot.<br>Rinse beans and place in crockpot.<br>Open and pour Tomato puree and sauce into crock pot.<br>Cover crockpot and cook on low for 6 hours.<br>Serve into individual bowls and top with sour cream and cheese.</p>");
+			}
+		else
+		{
+			//HALF PORTION
+			if($("input[type=radio][name=r1Portion]:checked").val() == "half")
+			{
+				$("#chiliServe").html("3");
+				$("#chiliPrepTime").html("13");
+				$("#chiliCookTime").html("3");
+				$("#r1IngredientsList").html("1 tbsp. cooking oil<br>1/2 cup onion<br>1/2 cup chopped peppers<br>2 tbsp. Chili powder<br>1/2 tsp. Hot chili powder (optional)<br>1/2 lb ground beef or chicken<br>1 cans Red Beans<br>1 cans Kidney Beans<br>1 cans Tomato Puree<br>1 cans Tomato Sauce<br>1/2 cup shredded cheese (optional)<br>1/4 cup sour cream (optional)");
+				$("#r1Prep").html("<p>Heat cooking oil in 2 quart skillet.<br>Saute onions and peppers for 2 1/2 minutes.<br>Add spices and stir for 30 seconds.<br>Pour contents of skillet into 3 quart crock pot.<br>Rinse beans and place in crockpot.<br>Open and pour Tomato puree and sauce into crock pot.<br>Cover crockpot and cook on low for 3 hours.<br>Serve into individual bowls and top with sour cream and cheese.</p>");
+			}
+			//DOUBLE PORTION
+			else
+			{
+			$("#chiliServe").html("12");
+			$("#chiliPrepTime").html("50");
+			$("#chiliCookTime").html("12");
+			$("#r1IngredientsList").html("4 tbsp. cooking oil<br>2 cup onion<br>2 cup chopped peppers<br>8 tbsp. Chili powder<br>2 tsp. Hot chili powder (optional)<br>2 lb ground beef or chicken<br>4 cans Red Beans<br>4 cans Kidney Beans<br>4 cans Tomato Puree<br>4 cans Tomato Sauce<br>2 cup shredded cheese (optional)<br>1 cup sour cream (optional)");
+			$("#r1Prep").html("<p>Heat cooking oil in 2 quart skillet.<br>Saute onions and peppers for 10 minutes.<br>Add spices and stir for 30 seconds.<br>Add meat and cook until browned. Approximately 30 minutes.<br>Pour contents of skillet into 3 quart crock pot.<br>Rinse beans and place in crockpot.<br>Open and pour Tomato puree and sauce into crock pot.<br>Cover crockpot and cook on low for 12 hours.<br>Serve into individual bowls and top with sour cream and cheese.</p>");
+			}
+		}
+	});
+
+	// SHOW INGREDIENTS FOR RECIPE 1
+	$("#showR1Ingredients").click(function(){
+		$("#chiliIngredients").css("display","inline");
+		$("#showR1Ingredients").css("display","none");
+		$("#hideR1Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INGREDIENTS FOR RECIPE 1
+	$("#hideR1Ingredients").click(function(){
+		$("#chiliIngredients").css("display","none");
+		$("#showR1Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR1Ingredients").css("display","none");
+	});
+	//SHOW INSTRUCTIONS FOR RECIPE 1
+	$("#showR1Instructions").click(function(){
+		$("#chiliInstructions").css("display","inline");
+		$("#showR1Instructions").css("display","none");
+		$("#hideR1Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INSTRUCTIONS FOR RECIPE 1
+	$("#hideR1Instructions").click(function(){
+		$("#chiliInstructions").css("display","none");
+		$("#showR1Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR1Instructions").css("display","none");
+	}); 
+	
+
+// ---------------------------------- R E C I P E    T W O ------------------------------------
+
+//ON PORTION CHANGE
+	$("input[type=radio][name=r2Portion]").change(function(){
+	
+		//FULL PORTION
+		if($("input[type=radio][name=r2Portion]:checked").val() == "full")
+			{
+				$("#r2Serve").html("24");
+				$("#r2PrepTime").html("15");
+				$("#r2CookTime1").html("3");
+				$("#r2CookTime2").html("25");
+				$("#r2IngredientsList").html("3 cups shredded zucchini (2 to 3 medium)<br>1 2/3 cups sugar<br> 2/3 cup vegetable oil<br>2 teaspoons vanilla<br>4 eggs<br>3 cups Gold Medal™ all-purpose or whole wheat flour<br>2 teaspoons baking soda<br>1 teaspoon salt<br>1 teaspoon ground cinnamon<br>1/2 teaspoon ground cloves<br>1/1/2 cup coarsely chopped nuts<br>1/2 cup raisins, if desired<br>");
+				$("#r2Prep").html("Move oven rack to low position so that tops of pans will be in center of oven.<br>Heat oven to 350°F.<br>Grease bottoms only of 2 (8x4-inch) loaf pans or 1 (9x5-inch) loaf pan with shortening or cooking spray.<br>In large bowl, stir zucchini, sugar, oil, vanilla and eggs until well mixed.<br>Stir in remaining ingredients except nuts and raisins.<br>Stir in nuts and raisins.<br>Divide batter evenly between 8-inch pans or pour into 9-inch pan.<br>Bake 8-inch loaves 50 to 60 minutes, 9-inch loaf 1 hour 10 minutes to 1 hour 20 minutes, or until toothpick inserted in center comes out clean.<br>Cool in pans on cooling rack 10 minutes.<br>Loosen sides of loaves from pans; remove from pans and place top side up on cooling rack.<br>Cool completely, about 2 hours, before slicing.<br>Wrap tightly and store at room temperature up to 4 days, or refrigerate up to 10 days.");
+			}
+		else
+		{
+			//HALF PORTION
+			if($("input[type=radio][name=r2Portion]:checked").val() == "half")
+			{
+				$("#r2Serve").html("12");
+				$("#r2PrepTime").html("8");
+				$("#r2CookTime1").html("1");
+				$("#r2CookTime2").html("43");
+				$("#r2IngredientsList").html("1 1/2 cups shredded zucchini (1 to 1 1/2 medium)<br>1 cup, 2 tablespoons, and 2 teaspoons sugar<br> 1/3 cup vegetable oil<br>1 teaspoon vanilla<br>2 eggs<br>1.5 cups Gold Medal™ all-purpose or whole wheat flour<br>1 teaspoon baking soda<br>1/1/2 teaspoon ground cinnamon<br>1/4 teaspoon ground cloves<br>1/4 teaspoon baking powder<br>1/4 cup coarsely chopped nuts<br>1/4 cup raisins, if desired");
+				$("#r2Prep").html("Move oven rack to low position so that tops of pans will be in center of oven.<br>Heat oven to 350°F.<br>Grease bottoms only of 1 or 2 (8x4-inch) loaf pans with shortening or cooking spray.<br>In large bowl, stir zucchini, sugar, oil, vanilla and eggs until well mixed.<br>Stir in remaining ingredients except nuts and raisins.<br>Stir in nuts and raisins.<br>Divide batter evenly between 8-inch pans.<br>Bake 8-inch loaves 25 to 30 minutes or until toothpick inserted in center comes out clean.<br>Cool in pans on cooling rack 10 minutes.<br>Loosen sides of loaves from pans; remove from pans and place top side up on cooling rack.<br>Cool completely, about 2 hours, before slicing.<br>Wrap tightly and store at room temperature up to 4 days, or refrigerate up to 10 days.");
+			}
+			//DOUBLE PORTION
+			else
+			{
+				$("#r2Serve").html("48");
+				$("#r2PrepTime").html("30");
+				$("#r2CookTime1").html("6");
+				$("#r2CookTime2").html("50");
+				$("#r2IngredientsList").html("6 cups shredded zucchini (4 to 6 medium)<br>3 1/3 cups sugar<br> 1 1/3 cup vegetable oil<br>4 teaspoons vanilla<br>8 eggs<br>6 cups Gold Medal™ all-purpose or whole wheat flour<br>4 teaspoons baking soda<br>2 teaspoon salt<br>2 teaspoon ground cinnamon<br>1 teaspoon ground cloves<br>1 teaspoon baking powder<br>1 cup coarsely chopped nuts<br>1 cup raisins, if desired");
+				$("#r2Prep").html("Move oven rack to low position so that tops of pans will be in center of oven.<br>Heat oven to 350°F.<br>Grease bottoms only of 4 (8x4-inch) loaf pans or 2 (9x5-inch) loaf pan with shortening or cooking spray.<br>In large bowl, stir zucchini, sugar, oil, vanilla and eggs until well mixed.<br>Stir in remaining ingredients except nuts and raisins.<br>Stir in nuts and raisins.<br>Divide batter evenly between 8-inch pans or pour into 9-inch pan.<br>Bake 8-inch loaves 50 to 60 minutes, 9-inch loaf 1 hour 10 minutes to 1 hour 20 minutes, or until toothpick inserted in center comes out clean.<br>Cool in pans on cooling rack 10 minutes.<br>Loosen sides of loaves from pans; remove from pans and place top side up on cooling rack.<br>Cool completely, about 2 hours, before slicing.<br>Wrap tightly and store at room temperature up to 4 days, or refrigerate up to 10 days.");
+			}
+		}
+	});
+
+	// SHOW INGREDIENTS FOR RECIPE 2
+	$("#showR2Ingredients").click(function(){
+		$("#r2Ingredients").css("display","inline");
+		$("#showR2Ingredients").css("display","none");
+		$("#hideR2Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INGREDIENTS FOR RECIPE 1
+	$("#hideR2Ingredients").click(function(){
+		$("#r2Ingredients").css("display","none");
+		$("#showR2Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR2Ingredients").css("display","none");
+	});
+	//SHOW INSTRUCTIONS FOR RECIPE 1
+	$("#showR2Instructions").click(function(){
+		$("#r2Instructions").css("display","inline");
+		$("#showR2Instructions").css("display","none");
+		$("#hideR2Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INSTRUCTIONS FOR RECIPE 1
+	$("#hideR2Instructions").click(function(){
+		$("#r2Instructions").css("display","none");
+		$("#showR2Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR2Instructions").css("display","none");
+	}); 
+
+// ---------------------------------- R E C I P E    T H R E E  ------------------------------------
+
+//ON PORTION CHANGE
+	$("input[type=radio][name=r3Portion]").change(function(){
+	
+		//FULL PORTION
+		if($("input[type=radio][name=r3Portion]:checked").val() == "full")
+			{
+				$("#r3Serve").html("1 batch");
+				$("#r3PrepTime").html("1 hour 20 minutes");
+				$("#r3CookTime1").html("---");
+				$("#r3CookTime2").html("---");
+				$("#r3IngredientsList").html("<p>3 Haas avocados, halved, seeded and peeled<br>1 lime, juiced<br>1/2 teaspoon kosher salt<br>1/2 teaspoon ground cumin<br>1/2 teaspoon cayenne<br>1/2 medium onion, diced<br>1/2 jalapeno pepper, seeded and minced<br>2 Roma tomatoes, seeded and diced<br>1 tablespoon chopped cilantro<br>1 clove garlic, minced</p>");
+				$("#r3Prep").html("<p>In a large bowl place the scooped avocado pulp and lime juice, toss to coat.<br>Drain, and reserve the lime juice, after all of the avocados have been coated.<br>Using a potato masher add the salt, cumin, and cayenne and mash. <br>Then, fold in the onions, tomatoes, cilantro, and garlic.<br>Add 1 tablespoon of the reserved lime juice.<br>Let sit at room temperature for 1 hour and then serve.</p>");
+			}
+		else
+		{
+			//HALF PORTION
+			 if($("input[type=radio][name=r3Portion]:checked").val() == "half")
+			{
+				$("#r3Serve").html("1/2 batch");
+				$("#r3PrepTime").html("1 hour 10 minutes");
+				$("#r3CookTime1").html("---");
+				$("#r3CookTime2").html("---");
+				$("#r3IngredientsList").html("<p>1 1/2 Haas avocados, halved, seeded and peeled<br>1/2 lime, juiced<br>1/4 teaspoon kosher salt<br>1/4 teaspoon ground cumin<br>1/4 teaspoon cayenne<br>1/4 medium onion, diced<br>1/4 jalapeno pepper, seeded and minced<br>1 Roma tomatoes, seeded and diced<br>1/2 tablespoon chopped cilantro<br>1/2 clove garlic, minced</p>");
+				$("#r3Prep").html("<p>In a large bowl place the scooped avocado pulp and lime juice, toss to coat.<br>Drain, and reserve the lime juice, after all of the avocados have been coated.<br>Using a potato masher add the salt, cumin, and cayenne and mash. <br>Then, fold in the onions, tomatoes, cilantro, and garlic.<br>Add 1/2 tablespoon of the reserved lime juice.<br>Let sit at room temperature for 1 hour and then serve.</p>");
+			}
+			//DOUBLE PORTION
+			else
+			{
+				if($("input[type=radio][name=r3Portion]:checked").val() == "double")
+			{
+				$("#r3Serve").html("2 batches");
+				$("#r3PrepTime").html("1 hour 40 minutes");
+				$("#r3CookTime1").html("---");
+				$("#r3CookTime2").html("---");
+				$("#r3IngredientsList").html("<p>6 Haas avocados, halved, seeded and peeled<br>2 limes, juiced<br>1 teaspoon kosher salt<br>1 teaspoon ground cumin<br>1 teaspoon cayenne<br>1 medium onion, diced<br>1 jalapeno pepper, seeded and minced<br>4 Roma tomatoes, seeded and diced<br>2 tablespoons chopped cilantro<br>2 cloves garlic, minced</p>");
+				$("#r3Prep").html("<p>In a large bowl place the scooped avocado pulp and lime juice, toss to coat.<br>Drain, and reserve the lime juice, after all of the avocados have been coated.<br>Using a potato masher add the salt, cumin, and cayenne and mash. <br>Then, fold in the onions, tomatoes, cilantro, and garlic.<br>Add 2 tablespoon of the reserved lime juice.<br>Let sit at room temperature for 1 hour and then serve.</p>");
+			}
+			}
+		}
+	});
+
+	// SHOW INGREDIENTS FOR RECIPE 3
+	$("#showR3Ingredients").click(function(){
+		$("#r3Ingredients").css("display","inline");
+		$("#showR3Ingredients").css("display","none");
+		$("#hideR3Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INGREDIENTS FOR RECIPE 3
+	$("#hideR3Ingredients").click(function(){
+		$("#r3Ingredients").css("display","none");
+		$("#showR3Ingredients").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR3Ingredients").css("display","none");
+	});
+	//SHOW INSTRUCTIONS FOR RECIPE 3
+	$("#showR3Instructions").click(function(){
+		$("#r3Instructions").css("display","inline");
+		$("#showR3Instructions").css("display","none");
+		$("#hideR3Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+	})
+	//HIDE INSTRUCTIONS FOR RECIPE 3
+	$("#hideR3Instructions").click(function(){
+		$("#r3Instructions").css("display","none");
+		$("#showR3Instructions").css({"display":"inline","background-color":"#e9a863", "border":".15em solid #65340d"});
+		$("#hideR3Instructions").css("display","none");
+	}); 
+
+	
+//-------------------- COOKIE RESULT PAGE BUTTON------------------------//
+
+
+
+});
+
+</script>
+
+<style>
+
+body{
+	font-family: sans-serif;
+	background-image: url("background.png");
+}
+
+#title{
+	background-color: #de831f;
+	margin: 0 auto;
+	text-align: center;
+	width: 25%;
+}
+#note{
+	margin: 0 auto;
+	margin-top: 5%;
+	width: 50%;
+	text-align: center;
+	border-top: .05em solid black;
+}
+
+.recipe{
+	width: 45%;
+	float: left;
+}
+
+.image{
+	margin-top: 5%;
+	margin-bottom: 5%;
+	padding: 2%;
+	border: .25em solid #65340d;
+	float: left;
+	background-color: #de831f;
+}
+.clear{
+	clear: both;
+}
+
+.center{
+	width: 75%;
+	margin: 0 auto;
+}
+
+img{
+	box-shadow: .25em .25em .25em 0 black;
+}
+#cookiePage{
+	float: right;
+	margin-right: 5%;
+	text-decoration: none;
+	background-color: #e9a863; 
+	border: .15em solid #65340d; 
+}
+
+
+#chiliIngredients{
+	display: none;
+}
+#chiliInstructions{
+	display: none;
+}
+#showR1Ingredients{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+#showR1Instructions{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+#hideR1Ingredients{
+	display: none;
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+#hideR1Instructions{
+	display: none;
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+
+
+
+#r2Ingredients{
+	display: none;
+}
+#r2Instructions{
+	display: none;
+}
+#showR2Ingredients{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;	
+}
+#showR2Instructions{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;	
+}
+#hideR2Ingredients{
+	display: none;
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+#hideR2Instructions{
+	display: none;
+	background-color: #e9a863; 
+	border: .15em solid #65340d;
+}
+
+
+
+#r3Ingredients{
+	display: none;
+}
+#r3Instructions{
+	display: none;
+
+}
+#showR3Ingredients{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;	
+}
+#showR3Instructions{
+	background-color: #e9a863; 
+	border: .15em solid #65340d;	
+}
+#hideR3Ingredients{
+	display: none;
+	
+}
+#hideR3Instructions{
+	display: none;
+	
+}
+
+
+
+.ui-tabs{
+	width: 75%;
+	margin: 0 auto;
+	background-color: #fce0b5;
+}
+.ui-tabs-panel{
+	color: black;
+}
+.ui-tabs-nav{
+	background-color: #65340d;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-tab{
+	background-color: #de831f;
+	border: none;
+	color: black;
+	font-weight: bold;
+	box-shadow: inset 0em -.15em .25em 0em black;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-tab a{
+	color: black;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-active a{
+	background-color: #fce0b5;
+	border: none;
+	color: black;
+	text-decoration: underline;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-active{
+	background-color: #fce0b5;
+	border: none;
+	color: black;
+	box-shadow: none;
+}
+</style>
+
+</head>
+<body>
+<!--
+		Display name of recipe
+		image of recipe
+		# of servings for recipe
+		avg. prep/cook time
+		difficult of recipe
+	
+	-- RECIPE INGREDIENT LIST --
+		show when user clicks
+		display list of ingredients with quantity
+		change quality to 1/2 for 1/2 servings
+		change quality to x2 for x2 servings
+		be able to close section
+	
+	-- PREP INSTRUCTIONS --
+		show when user clicks
+		qunatity changes shown
+		be able to close section
+		
+-->
+
+<div id="tabs">
+<ul>
+<li><a href="#front">Info</a></li>
+<li><a href="#chili">Crockpot Chili</a></li>
+<li><a href="#recipe2">Zucchini Bread</a></li>
+<li><a href="#recipe3">Guacamole</a></li>
+</ul>
+
+<p><input id="cookiePage" type="button" value="Cookie Results Page" /></p>
+
+
+<div id="front">
+<h1>Dynamic Recipes</h1>
+<p>This page and the following are being used to show dynamic recipes and cookies.</p>
+<p>The recipes on this page use dynamic form presentation to display and hide ingredients and prep instructions while keeping in mind portion sizes.</p>
+<p>The Cookies Page uses cookies to show how long the user has spent on the page as a whole, as well as how much time was spent on each recipe section.</p>
+<p>Enjoy!</p>
+
+</div>
+
+
+
+
+<!--------------------------------------------- R E C I P E   O N E ---------------------------------------------------->
+
+<div id="chili">
+
+<div class="center">
+
+<div class="recipe">
+<h1>Jeff Gullion's Crockpot Chili</h1>
+Serves: <span id="chiliServe">6</span> <input type="radio" name="r1Portion" value="half">Half-Portion <input type="radio" name="r1Portion" value="full" checked>Full-Portion <input type="radio" name="r1Portion" value="double">Double-Portion<br>
+Preparation: <span id="chiliPrepTime">25</span> minutes<br>
+Cooking: <span id="chiliCookTime">6</span> hours</p>
+<p><input type="button" id="showR1Ingredients"value="Show Ingredients"/></p>
+<p><input type="button" id="hideR1Ingredients" value="Hide Ingredients"/></p>
+<p><input type="button" id="showR1Instructions" value="Show Preparation Instructions"/></p>
+<p><input type="button" id="hideR1Instructions" value="Hide Preparation Instructions"/></p>
+
+<div id="chiliIngredients">
+<h2>Ingredients:</h2>
+<p id="r1IngredientsList">2 tbsp. cooking oil<br>
+1 cup onion<br>
+1 cup chopped peppers<br>
+4 tbsp. Chili powder<br>
+1 tsp. Hot chili powder (optional)<br>
+1 lb ground beef or chicken<br>
+2 cans Red Beans<br>
+2 cans Kidney Beans<br>
+2 cans Tomato Puree<br>
+2 cans Tomato Sauce<br>
+1 cup shredded cheese (optional)<br>
+1/2 cup sour cream (optional)</p>
+</div>
+
+<div id="chiliInstructions">
+<h2>Preparation Insructions:</h2>
+<p id="r1Prep">
+Heat cooking oil in 2 quart skillet.<br>
+Saute onions and peppers for 5 minutes.<br>
+Add spices and stir for 30 seconds.<br>
+Add meat and cook until browned. Approximately 15 minutes.<br>
+Pour contents of skillet into 3 quart crock pot.<br>
+Rinse beans and place in crockpot.<br>
+Open and pour Tomato puree and sauce into crock pot.<br>
+Cover crockpot and cook on low for 6 hours.<br>
+Serve into individual bowls and top with sour cream and cheese.</p>
+</div>
+</div>
+
+<div class="image">
+<p><a href="https://www.bettycrocker.com/recipes/slow-cooker-family-favorite-chili/c6f4c4e2-8298-4d9d-8f21-d4ca19d35cb7"><img src="chili.jpg"  id="image1"/></a></p>
+</div>
+
+<div class="clear">
+</div>
+
+</div>
+</div>
+
+<!--------------------------------------------- R E C I P E   T W O ---------------------------------------------------->
+
+<div id="recipe2">
+
+<div class="center">
+<div class="recipe">
+<h1>Betty Crocker's Zucchini Bread</h1>
+Serves: <span id="r2Serve">24</span> <input type="radio" name="r2Portion" value="half">Half-Portion <input type="radio" name="r2Portion" value="full" checked>Full-Portion <input type="radio" name="r2Portion" value="double">Double-Portion<br>
+Preparation: <span id="r2PrepTime">25</span> minutes<br>
+Cooking: <span id="r2CookTime1">3</span> hours <span id="r2CookTime2">25</span> minutes</p>
+<p><input type="button" id="showR2Ingredients"value="Show Ingredients"/></p>
+<p><input type="button" id="hideR2Ingredients" value="Hide Ingredients"/></p>
+<p><input type="button" id="showR2Instructions" value="Show Preparation Instructions"/></p>
+<p><input type="button" id="hideR2Instructions" value="Hide Preparation Instructions"/></p>
+
+<div id="r2Ingredients">
+<h2>Ingredients:</h2>
+<p id="r2IngredientsList">
+3 cups shredded zucchini (2 to 3 medium)<br>
+1 2/3 cups sugar<br> 
+2/3 cup vegetable oil<br>
+2 teaspoons vanilla<br>
+4 eggs<br>
+3 cups Gold Medal™ all-purpose or whole wheat flour<br>
+2 teaspoons baking soda<br>
+1 teaspoon salt<br>
+1 teaspoon ground cinnamon<br>
+1/2 teaspoon ground cloves<br>
+1/2 teaspoon baking powder<br>
+1/2 cup coarsely chopped nuts<br>
+1/2 cup raisins, if desired<br>
+</p>
+</div>
+
+<div id="r2Instructions">
+<h2>Preparation Insructions:</h2>
+
+<p id="r2Prep">Move oven rack to low position so that tops of pans will be in center of oven.<br>
+Heat oven to 350°F.<br>
+Grease bottoms only of 2 (8x4-inch) loaf pans or 1 (9x5-inch) loaf pan with shortening or cooking spray.<br>
+In large bowl, stir zucchini, sugar, oil, vanilla and eggs until well mixed.<br>
+Stir in remaining ingredients except nuts and raisins.<br>
+Stir in nuts and raisins.<br>
+Divide batter evenly between 8-inch pans or pour into 9-inch pan.<br>
+Bake 8-inch loaves 50 to 60 minutes, 9-inch loaf 1 hour 10 minutes to 1 hour 20 minutes, or until toothpick inserted in center comes out clean.<br>
+Cool in pans on cooling rack 10 minutes.<br>
+Loosen sides of loaves from pans; remove from pans and place top side up on cooling rack.<br>
+Cool completely, about 2 hours, before slicing.<br>
+Wrap tightly and store at room temperature up to 4 days, or refrigerate up to 10 days.</p>
+</div>
+</div>
+
+<div class="image">
+<p><a href="https://www.bettycrocker.com/recipes/zucchini-bread/5f75d183-d3e9-431a-9a93-22f0c957b56a"><img src="zucchini.jpg" id="image2" /></a></p>
+</div>
+
+<div class="clear">
+</div>
+
+</div>
+</div>
+
+<!--------------------------------------------- R E C I P E   T H R E E ---------------------------------------------------->
+
+<div id="recipe3">
+
+<div class="center">
+
+<div class="recipe">
+<h1>Alton Brown's Guacamole</h1>
+Serves: <span id="r3Serve">1 batch</span> <input type="radio" name="r3Portion" value="half">Half-Portion <input type="radio" name="r3Portion" value="full" checked>Full-Portion <input type="radio" name="r3Portion" value="double">Double-Portion<br>
+Preparation: <span id="r3PrepTime">1 hour 20 minutes</span><br>
+Cooking: <span id="r3CookTime1"></span>---<span id="r3CookTime2">---</span></p>
+<p><input type="button" id="showR3Ingredients"value="Show Ingredients"/></p>
+<p><input type="button" id="hideR3Ingredients" value="Hide Ingredients"/></p>
+<p><input type="button" id="showR3Instructions" value="Show Preparation Instructions"/></p>
+<p><input type="button" id="hideR3Instructions" value="Hide Preparation Instructions"/></p>
+
+<div id="r3Ingredients">
+<h2>Ingredients:</h2>
+<p id="r3IngredientsList">
+3 Haas avocados, halved, seeded and peeled<br>
+1 lime, juiced<br>
+1/2 teaspoon kosher salt<br>
+1/2 teaspoon ground cumin<br>
+1/2 teaspoon cayenne<br>
+1/2 medium onion, diced<br>
+1/2 jalapeno pepper, seeded and minced<br>
+2 Roma tomatoes, seeded and diced<br>
+1 tablespoon chopped cilantro<br>
+1 clove garlic, minced</p>
+</p>
+</div>
+
+<div id="r3Instructions">
+<h2>Preparation Insructions:</h2>
+
+<p id="r3Prep">In a large bowl place the scooped avocado pulp and lime juice, toss to coat.<br>
+Drain, and reserve the lime juice, after all of the avocados have been coated.<br>
+Using a potato masher add the salt, cumin, and cayenne and mash. <br>
+Then, fold in the onions, tomatoes, cilantro, and garlic.<br>
+Add 1 tablespoon of the reserved lime juice.<br>Let sit at room temperature for 1 hour and then serve.</p>
+</div>
+</div>
+
+<div class="image">
+<p><a href="http://www.foodnetwork.com/recipes/alton-brown/guacamole-recipe-1940609"><img src="guac.jpg" id="image3" /></a></p>
+</div>
+
+<div class="clear">
+</div>
+
+</div>
+</div>
+<div id="note">
+<p>NOTE: Times and measurements for "half" and "double" recipe portions are approximate. The creator of this website does not own these recipes and their source can be found in the images provided.</p>
+</div>
+</div>
+</body>
+</html>

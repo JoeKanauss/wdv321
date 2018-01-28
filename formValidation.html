@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Validation</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+validForm = true;
+
+	function validateName()
+	{		
+//verify nameIn (required; must have letters; cannot have spaces or <>')
+		var nameIn = $("#custName").val();
+		var nameRegEx = new RegExp(/^[a-zA-Z^(<>\S')]*$/);
+		var nameInValid = nameRegEx.test(nameIn);
+		
+		if(nameIn == "")
+		{	
+			nameInValid = false;
+			validForm = false;
+			var nameError = $("#nameError").html("Please enter your name, using only letters");
+		}
+		else
+			if(nameIn != "" && !nameInValid)
+		{
+			nameInValid = false;
+			validForm = false;
+			nameError = $("#nameError").html("Please include only letters in your name");
+			$("#custName").val(nameIn);
+		}
+		
+		
+		if(nameInValid)
+		{
+			nameError = $("#nameError").html("");
+		}
+	}
+//verify phoneIn (not required; must be numbers only)
+		
+	function validatePhone()
+	{
+		var phoneAC = $("#phoneAC").val();
+		var phone1 = $("#phone1").val();
+		var phone2 = $("#phone2").val();
+	
+		var phoneACRegEx = new RegExp(/^\d{3}$/);
+		var phoneACValid = phoneACRegEx.test(phoneAC);
+		if(phoneAC == "")
+		{
+			phoneACValid = true;
+		}
+		
+		var phone1RegEx =  new RegExp(/^\d{3}$/);
+		var phone1Valid = phone1RegEx.test(phone1);
+		if(phone1 == "")
+		{
+			phone1Valid = true;
+		}
+		
+		var phone2RegEx =  new RegExp(/^\d{4}$/);
+		var phone2Valid = phone2RegEx.test(phone2);
+		if(phone2 == "")
+		{
+			phone2Valid = true;
+		}
+	
+		//if all phone segments are true, phone number equals segments in format and phoneInValid is TRUE
+		if(phoneACValid && phone1Valid && phone2Valid)
+		{
+			var phoneIn = "1-" + phoneAC + "-" + phone1 + "-" + phone2;
+			var phoneInValid = true;
+			var phoneError = $("#phoneError").html("");
+		}
+		else
+		{
+			phoneInValid = false;
+			validForm = false;
+			phoneError = $("#phoneError").html("One or more of the Phone # fields is not in the (xxx)-xxx-xxxx format");
+			$("#phoneAC").val(phoneAC);
+			$("#phone1").val(phone1);
+			$("#phone2").val(phone2);
+		}
+			
+		// if all phone segments but one are filled in, phoneInValid= FALSE
+		if(((phoneAC == "" ) && (phone1 && phone2 != ""))
+			|| ((phone1 == "" ) && (phoneAC && phone2 != ""))
+			|| ((phone2 == "" ) && (phoneAC && phone1 != "")))
+		{
+			phoneInValid = false;
+			validForm = false;
+			phoneError = $("#phoneError").html("Please fill in all of the Phone Number fields");
+			$("#phoneAC").val(phoneAC);
+			$("#phone1").val(phone1);
+			$("#phone2").val(phone2);
+		}
+		
+		// if one phone segment is filled in and rest are not, phoneInValid = FALSE
+		if(((phoneAC != "" ) && (phone1 == "") && (phone2 == ""))
+			|| (phone1 != "" ) && (phoneAC == "") && (phone2 == "")
+			|| (phone2 != "" ) && (phoneAC == "") && (phone1 == ""))
+		{
+			phoneInValid = false;
+			validForm = false;
+			phoneError = $("#phoneError").html("Please fill in all of the Phone Number fields");
+			$("#phoneAC").val(phoneAC);
+			$("#phone1").val(phone1);
+			$("#phone2").val(phone2);
+		}
+	}	
+//Verify emailIn (required; can have letters, numbers, symbols; must be a valid (including @ and .) email address)
+	function validateEmail()
+	{
+		var emailIn = $("#custEmail").val();
+		var emailRegEx = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+		var emailInValid = emailRegEx.test(emailIn);
+		
+		if(emailInValid)
+		{
+			var emailError = $("#emailError").html("");
+		}
+		
+		if(!emailInValid)
+		{
+			validForm = false;
+			if(emailIn == "")
+			{
+				emailError = $("#emailError").html("Please add an email address in the xxxx@xxx.xxx format");
+			}
+			else
+			{
+				if(emailIn != "" && !emailInValid)
+				{
+					emailError = $("#emailError").html("It seems this is not a valid email address. Please use the xxxx@xxx.xxx format");
+					$("#custEmail").val(emailIn);
+				}
+			}
+		}
+	}
+	
+//Verify productIn (required)
+	function validateProduct()
+	{
+		var productIn = $("input[type=radio][name=custProducts]:checked").val();
+		if(productIn == undefined)
+		{
+			var productInValid = false;
+			validForm = false;
+			var productError = $("#productError").html("Please select the Product Group relating to your comments");
+		}
+		else
+		{
+			productInValid = true;
+			productError = $("#productError").html("");
+		}
+		
+		
+		if(!validForm)
+		{
+			$("input[type=radio][name=custProducts]:checked").val(productIn);
+		}
+		
+	}
+		
+//Verify complaintIn (required; must be longer than 5 characters; can contain basic punctuation symbols)
+	function validateComplaint()
+	{	
+		var complaintIn = $("#custComplaint").val();
+		var complaintRegEx = new RegExp(/^[a-zA-Z0-9,.!?;" ]{5,}$/);
+		var complaintInValid = complaintRegEx.test(complaintIn);
+		var complaintInLength = complaintIn.length;
+		
+		//if complaintIn is less than 5 characters, print length message error
+		if (complaintInLength < 5)
+		{
+			validForm = false;
+			var complaintError = $("#complaintError").html("Please have your description be at least 5 characters long to ensure better quality assistance");
+			$("#custComplaint").val(complaintIn);
+		}
+		else
+		{
+			if(complaintInLength >= 5 && !complaintInValid)
+			{
+			
+				complaintError = $("#complaintError").html("Please describe your problem using numbers, letters, and basic punctuation only ");
+				$("#custComplaint").val(complaintIn);
+			}
+		}
+		
+		if(complaintInValid)
+		{
+			complaintError = $("#complaintError").html("");
+		}
+		
+	}
+		
+		
+		
+$(document).ready(function(){	
+	$("#fileComplaint").click(function(){
+		validForm = true;
+		validateName();
+		validatePhone();
+		validateEmail();
+		validateProduct();
+		validateComplaint();
+		
+		if(validForm == true)
+		{
+			$("#form1").submit();	
+		}
+	});
+	
+	$("#reset").click(function(){
+		$("#nameError").html("");
+		$("#phoneError").html("");
+		$("#emailError").html("");
+		$("#productError").html("");
+		$("#complaintError").html("");
+	});
+});
+
+
+</script>
+
+<style>
+form{
+	border: .5em double #f1c703;
+	background-color: white;
+	text-align: left;
+	padding-left: 3%;
+}
+
+input[type=text]{
+	border-radius: .5em;
+	padding: .25% 1%;
+	background-color: #c7eae9;
+	font-size: 1.1em;
+}
+
+label{
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 1.05em;
+	padding-right: .25em;
+}
+
+textarea{
+	background-color: #e6daf1;
+	font-family: sans-serif;
+	font-size: 1.2em;
+}
+
+.error{
+	background-color: #ffcceb;
+	color: #e4018c;
+	font-style: italic;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div id="contain">
+<!-- name: required; must have letters; cannot have spaces or <>'**
+	 phone: not required; all parts must be "true" -**
+		phoneAC: not required; must be 3 numbers
+		phone1: not required; must be 3 numbers
+		phone2: not required; must be 4 numbers
+	 Email: required; can have letters, numbers, symbols; must be a valid (including @ and .) email address**
+	 Product: required**
+	 Description: required; must be longer than 5 characters (to make the chances of a descriptive message better); can contain basic punctuation symbols; must not have <>; must be <= 120 characters**
+	 
+	 
+	 Error Messages: Start as "Display: None" and empty ; if form is invalid, make messages "Display: inline" with message
+	 Field Info: on submission, if form is invalid, replace information into fields
+	 Confirmation Message: Start as "Display: None" and empty; if form is valid, make message "Display: inline" with message
+-->
+
+<h1>Form Validation Project</h1>
+	<form id="form1" name="form1" method="post" action="formValidationConfirm.html">
+	  <p>Please enter the following information in order to process your concerns.</p>
+	  <p> 
+	    <label for="custName">*First Name:</label>
+	  	<input type="text" name="custName" id="custName" /> <span class="error" id="nameError"></span>
+	  </p>
+	  <p>
+	    <label for="custPhone">U.S. Phone Number:</label> 1 -
+		<!-- changed phone number field to US-only and made each segment its own input -->
+	    ( <input type="text" name="phoneAC" id="phoneAC" size="3" maxlength="3"/> ) - 
+		  <input type="text" name="phone1" id="phone1" size="3" maxlength="3"/> - 
+		  <input type="text" name="phone2" id="phone2" size="4" maxlength="4"/> <span class="error" id="phoneError"></span>
+	  </p>
+	  <p>
+	  <label for="custEmail">*Email:</label>
+	  <input type="text" name="custEmail" id="custEmail" /> <span class="error" id="emailError"></span>
+	  </p>
+	  <p><label>*Please Select Product Group:</label> <span class="error" id="productError"></span></p> 
+	  <p>
+	      <input type="radio" name="custProducts" value="books" id="custProducts_0" />
+	      Books
+	    <br />
+	      <input type="radio" name="custProducts" value="movies" id="custProducts_1" />
+	      Movies
+	    <br />
+	      <input type="radio" name="custProducts" value="electronics" id="custProducts_2" />
+	      Consumer Electronics
+	    <br />
+	      <input type="radio" name="custProducts" value="computer" id="custProducts_3" />
+	      Computer
+	    <br />
+	  </p>
+	  <p>
+		<label for="custComplaint">*Description of problem:	(Limit 120 characters)</label> <span class="error" id="complaintError"></span></p>
+	    <textarea name="custComplaint" id="custComplaint" cols="45" rows="5" maxlength="120" placeholder="To ensure better quality assistance, please have your description be no less than 5 characters. Thank You!"></textarea>
+      </p>
+	  <p>
+	    <input type="button" name="fileComplaint" id="fileComplaint" value="File Complaint" />
+	    <input type="reset" name="reset" id="reset" value="Reset" />
+	  </p>
+	  
+</form>
+	<p>&nbsp;</p>
+</body>
+</div>
+</body>
+</html>

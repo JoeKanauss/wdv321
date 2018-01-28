@@ -1,0 +1,108 @@
+	
+		var chiliStartTime = getCookie("chiliStart");
+		var chiliEndTime = getCookie("chiliEnd");
+		var chiliTime = chiliEndTime - chiliStartTime;
+		
+		
+			var chiliTimeInSeconds = chiliTime/1000;
+			var chiliTimeMinutes = Math.floor(chiliTimeInSeconds/60);
+			var chiliTimeSeconds = chiliTimeInSeconds - chiliTimeMinutes*60;
+			var totalChiliTime = "Minutes: "+chiliTimeMinutes + " Seconds: "+chiliTimeSeconds;
+		if(chiliStartTime = "")
+		{
+			totalChiliTime = 0;
+		}
+		else
+		{
+			$("#chiliTime").html(totalChiliTime);
+		}
+		
+			
+	
+	
+		var r2StartTime = getCookie("r2Start");
+		var r2EndTime = getCookie("r2End");
+		var r2Time = r2EndTime - r2StartTime;
+		
+			var r2TimeInSeconds = r2Time/1000;
+			var r2TimeMinutes = Math.floor(r2TimeInSeconds/60);
+			var r2TimeSeconds = r2TimeInSeconds - r2TimeMinutes*60;
+			var totalR2Time = "Minutes: "+r2TimeMinutes + " Seconds: "+r2TimeSeconds;
+		
+		if(r2StartTime == "")
+		{
+			totalR2Time = 0;
+		}
+		else
+		{
+			$("#zucchiniTime").html(totalR2Time);
+		}
+		
+		
+		
+		var r3StartTime = getCookie("r3Start");
+		var r3EndTime = getCookie("r3End");
+		var r3Time = r3EndTime - r3StartTime;
+		
+			var r3TimeInSeconds = r3Time/1000;
+			var r3TimeMinutes = Math.floor(r3TimeInSeconds/60);
+			var r3TimeSeconds = r3TimeInSeconds - r3TimeMinutes*60;
+			var totalR3Time = "Minutes: "+r3TimeMinutes + " Seconds: "+r3TimeSeconds;
+			
+		if(r3StartTime == "")
+		{
+			totalR3Time = 0;
+		}
+		else
+		{
+			$("#guacamoleTime").html(totalR3Time);
+		}
+		
+		
+		if(!getStart)
+		{
+			$("#pageTime").html("Needed cookies not set.");
+		}
+		if(!chiliStartTime)
+		{
+			$("#chiliTime").html("Needed cookies not set.");
+		}
+		if(!r2StartTime)
+		{
+			$("#zucchiniTime").html("Needed cookies not set.");
+		}
+		if(!r3StartTime)
+		{
+			$("#guacamoleTime").html("Needed cookies not set.");
+		}
+		
+		
+	$("#clear").click(function(){
+		setCookie("start", 0, -3);
+		setCookie("end", 0, -3)
+		setCookie("timeSpent", 0, -3);
+		setCookie("timeSpent", 0, -3)
+		setCookie("chiliStart", 0, -3);
+		setCookie("chiliEnd", 0, -3);
+		setCookie("r2Start", 0, -3);
+		setCookie("r2End", 0, -3);
+		setCookie("r3Start", 0, -3);
+		setCookie("r3End", 0, -3);
+		
+		if(!getStart)
+		{
+			$("#pageTime").html("Needed cookies not set.");
+		}
+		if(!chiliStartTime)
+		{
+			$("#chiliTime").html("Needed cookies not set.");
+		}
+		if(!r2StartTime)
+		{
+			$("#zucchiniTime").html("Needed cookies not set.");
+		}
+		if(!r3StartTime)
+		{
+			$("#guacamoleTime").html("Needed cookies not set.");
+		}
+	});

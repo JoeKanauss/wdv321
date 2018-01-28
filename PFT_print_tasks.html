@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://joekanauss.info/test/pft/PFT_print_tasks.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style id="stndz-style"></style>
+<script src="./PFT_print_tasks_files/jquery-3.2.1.js.download"></script>
+
+<script>
+$(document).ready(function(){ 
+	$.get("PFT_task_objects.php", function(data){
+		var data = JSON.parse(data);
+	
+		for(var x=0; x<data.length ;x++){
+			var task = data[x];
+			alert(task.name);
+			
+			$("#tasks").append("<div id='taskObj'><p class='name'>" + task.name + "</p><p><span class='name'>Category:</span> " + task.category + "<br><span class='name'>Difficulty:</span> " + task.difficulty + "</p></div>");
+			
+			if( (x+1) % 3 == 0)
+			{
+				$("#tasks").append("<br>");
+			}
+		}
+	});	
+});
+</script>
+<style>
+body{
+	font-family: monospace;
+	font-weight: lighter;
+	font-size: 1.25em;
+}
+#taskObj{
+	display: inline-block;
+	width: 200px;
+	margin-right: 2%;
+	text-align: center;
+}
+.name{
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+<p>Points for Tasks: Printable Task List</p>
+<div id="tasks">
+<div id="taskObj"><p class="name">Vacuum Living Room</p><p><span class="name">Category:</span> home<br><span class="name">Difficulty:</span> not bad</p></div><div id="taskObj"><p class="name">30 Minutes Of Homework</p><p><span class="name">Category:</span> Work/School<br><span class="name">Difficulty:</span> easy</p></div><div id="taskObj"><p class="name">Mow The Lawn</p><p><span class="name">Category:</span> home<br><span class="name">Difficulty:</span> not bad</p></div><br><div id="taskObj"><p class="name">Take Out Trash</p><p><span class="name">Category:</span> home<br><span class="name">Difficulty:</span> easy</p></div><div id="taskObj"><p class="name">Brush Teeth</p><p><span class="name">Category:</span> Health<br><span class="name">Difficulty:</span> easy</p></div></div>
+
+</body></html>

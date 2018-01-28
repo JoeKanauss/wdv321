@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery-3.2.1.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script>
+
+	
+$(function(){
+	$("#draggable1").draggable({
+	/*start: function(){
+			$("#draggable1").css("box-shadow", "5px 5px rgba(0,0,0, .55")
+			},
+	stop: function(){
+			$("#draggable1").css("box-shadow", "none")
+			}*/
+	});
+});
+
+
+$(function(){
+	$("#droppable").droppable({
+	accept:"#draggable1",
+	activate: function(){
+				$("#droppable").css("border", " solid #e4018c");
+				},
+	deactivate: function(){
+				$("#droppable").css("border", "none");
+				},
+	over: function(){
+			$("#droppable h1").html("You're hovering, now drop!");
+			},
+	out: function(){
+			$("#droppable h1").html("Drop the Draggable 1 here!");
+			},
+	drop: function(){
+			$("#droppable h1").html("Yay! It dropped!");
+			$("#draggable1").draggable("option", "containment", "#droppable");
+			}
+	});
+});
+
+
+
+
+$(function(){
+	$("#drag2").draggable({
+	start: (function(){
+			$("#drop2").toggle("fold");
+			$("#drag2").css("box-shadow","5px 5px rgba(0,0,0, .45)");
+			}),
+	});	
+});
+
+$(function(){
+	$("#drop2").droppable({
+	drop: (function(){
+			$("#drop2").toggle("explode");
+			$("#drag2").draggable("destroy");
+			$("#drag2").css("display", "none");
+			})
+	});
+});
+
+
+
+//USING THE MOUSEDOWN/UP EVENT HANDLERS MAKES THE EVENTS WITH THE DROPPABLE REDUNDANT
+$(document).ready(function(){
+	$("#draggable1").mousedown(function(){
+		$("#draggable1").css("box-shadow", "5px 5px rgba(0,0,0, .55)");
+	});
+	$("#draggable1").mouseup(function(){
+		$("#draggable1").css("box-shadow", "none");
+	});
+});
+
+
+
+
+</script>
+
+<style>
+.draggable{
+	width: 100px;
+	height: 100px;
+	background-color: #A964e5;
+}
+.ui-droppable{
+	width: 300px;
+	height: 300px;
+	background-color: #f1c703;
+}	
+.ui-droppable-hover{
+	background-color: #55c0ba;
+}
+#explode{
+	width: 100px;
+	height: 100px;
+	background-color: #e4018c;
+	display: none; 
+}
+
+#drag2{
+	width: 100px;
+	height: 100px;
+	background-color: #f1c703;
+	float: right;
+}
+
+#drop2{
+	width: 300px;
+	height: 300px;
+	background-color: #55c0ba;
+	display: none;
+}
+</style>
+
+</head>
+<body>
+<div class="draggable" id="draggable1">
+<p>1</p>
+</div>
+
+<div id="droppable">
+<h1>Drop the Draggable 1 here!</h1>
+</div>
+
+<div id="drag2">
+</div>
+
+<div id="drop2">
+<h2>Drop the Yellow Block Here and I'll Explode!</h2>
+</div>
+
+</body>
+</html>

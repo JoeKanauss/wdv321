@@ -1,0 +1,242 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trick or Treat Cupcakes and Candy</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+<style type="text/css">
+
+body {
+	background-color: #F3F3F3;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#logo {
+	width: 220px;
+	height: 220px;
+	float: left;
+	margin-left: -100px;
+	margin-top: -100px;
+	border: none;
+}
+
+.bold {
+	font-weight: bold;
+}
+#select{
+	display: none;
+}
+
+#select2{
+	display: none;
+}
+
+.main-div {
+	color: #ED9ED3;
+	width: 65%;
+	padding: 10px;
+	padding-bottom: 50px;
+	display: block;
+	margin: auto;
+	background-image: url('bg.png');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+  border: 25px solid pink;
+  border-image: repeating-linear-gradient( 45deg, #ED9ED3, #ED9ED3 1%, #805242 1%, #805242 8%) 10;
+	box-shadow: 20px 20px 10px 5px lightgrey;
+}
+
+.inner-div {
+	width: 90%;
+	display: block;
+	margin: auto;
+}
+
+#demo {
+	font-family: 'Rye', cursive;
+	letter-spacing: 2px;
+	font-size: 3.5em;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+p {
+	font-family: 'Rye', cursive;
+	text-transform: uppercase;
+	font-size: 2em;
+	text-align: center;
+}
+
+#select {
+	font-family: 'Rye', cursive;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	width: 35%;
+	border: 5px solid #805242;
+	display: block;
+	margin: auto;
+	background-color: #F3F3F3;
+}
+
+#select2 {
+	font-family: 'Rye', cursive;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	width: 35%;
+	border: 5px solid #805242;
+	margin: auto;
+	background-color: #F3F3F3;
+}
+
+.radio-container {
+	font-family: 'Rye', cursive;
+	text-transform: uppercase;
+	font-size: 2em;
+	width: 50%;
+	display: block;
+	margin: auto;
+	padding-left: 10px;
+}
+
+img {
+	width: 80%;
+	height: auto;
+	display: block;
+	margin: auto;
+	border: 15px solid #805242;
+}
+
+#Image {
+	color: #ED9ED3;
+}
+
+#Desc, #Price {
+	color: #805242;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+
+	$('input:radio[name="goodies"]').change(function(){
+		if ( $("input[type=radio][name=goodies]:checked").val() == "candy")
+	{
+		$("#select").css("display","none");
+		$("#select2").css("display","block");
+
+		$("#demo").html("Trick or Treat!");
+		$("#Desc").html("");
+		$("#Price").html("");
+		$("#Image").html("Image");
+	}
+		else
+		{
+			$("#select").css("display","block");
+			$("#select2").css("display","none");
+
+			$("#demo").html("Trick or Treat!");
+			$("#Desc").html("");
+			$("#Price").html("");
+			$("#Image").html("Image");
+		}
+	});
+
+//CANDY SELECTION
+
+$("#select2").change(function(){
+	if($("#select2").val() == "rock"){
+		$.get("ATPphp1.php", function(data) {
+		var data = JSON.parse(data);
+		var val = $("#select2").val();
+		
+		loadInfo(data, val);
+
+		});
+	}
+});
+
+
+	
+	
+$("#select").change(function(){
+	$.get("ATPphp1.php", function(data) {
+		var data = JSON.parse(data);
+		var val = $("#select").val();
+		
+		loadInfo(data, val)
+		//$("#Desc").html(data[val].desc);
+		//$("#Price").html(data[val].price);
+		//$("#Image").html(data[val].image);
+	});
+});
+
+
+
+	function loadInfo(data, val)
+	{
+		$("#demo").html(data[val].name);
+		$("#Desc").html(data[val].desc);
+		$("#Price").html(data[val].price);
+		$("#Image").html(data[val].image);
+
+	}
+});
+
+
+
+
+
+
+</script>
+</head>
+
+
+
+<body>
+
+<div class="main-div">
+
+	<img src="logo.png" alt="" id="logo">
+
+	<div class="inner-div">
+
+		<form name="form1" method="post" action="">
+		  <h2 id="demo">TRICK OR TREAT!</h2>
+
+		  <div class="radio-container">
+				<span>Cupcakes</span><input type="radio" name="goodies" value="cupcakes" checked>
+				<span>Candy</span><input type="radio" name="goodies" value="candy">
+		  </div>
+		  <p>Make your choice</p>
+		    <label>
+		      <select name="select" id="select">
+				<option value="none" selected >None</option>
+		        <option value="van">Vanilla Cupcake</option>
+		        <option value="choc">Chocolate Cupcake</option>
+		        <option value="red">Red Velvet Cupcake</option>
+		      </select>
+		    </label>
+
+		      <select name="select2" id="select2">
+				<option value="none" selected >None</option>
+		        <option value="rock">Rock Candy</option>
+		      </select>
+		    </label>
+		  </p>
+		  <p>Description</p>
+			<p><span id="Desc"></span></p>
+		  <p>Price</p>
+			<p><span id="Price"></span></p>
+		  <p><span id="Image">Image</span></p>
+		</form>
+
+	</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+{"description":"A delicious vanilla cupcake with rainbow sprinkles and white frosting.","price":"$2.99","image":"<img src='vancup.jpg' />"}
+{"description":"A delicious chocolate cupcake with dark sprinkles and frosting.","price":"$3.59","image":"<img src='choccup.jpg' />"}
+{"description":"A delicious red velvet cupcake with red sprinkles and cream cheese frosting.","price":"$4.99","image":"<img src='redcup.jpg' />"}

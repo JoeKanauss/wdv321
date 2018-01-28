@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery-3.2.1.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(function(){
+	$("#guy").draggable({
+	axis: "x",
+	containment: "parent"
+	});
+});
+
+$(function(){
+	$("#hammer").droppable({
+	over: function(){
+		$(".text").html("Release mouse button to pick up hammer.");
+	},
+	drop: function(){
+		$("#hammer").droppable("option", "destroy");
+		$("#wall").css("margin-left","700px");
+		$("#hammer").toggle("puff");
+		alert("Picked Up Hammer!");
+		$("button").css("display", "inline");
+		$(".text").html("");
+		
+	},
+	out: function(){
+		$(".text").html("");
+	}
+	});
+});
+</script>
+
+<style>
+#floor{
+	height: 100px;
+	border-bottom: 5px solid black;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+#guy{
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	float: left;
+}
+
+#hammer{
+	margin-left: 500px;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	float: left;
+}
+
+#wall{
+	margin-left: 500px;
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+#wall h1{
+	margin-bottom: 0;
+}
+
+button{
+	display: none;
+}
+</style>
+
+</head>
+<body>
+<div id="floor">
+
+<div id="guy">
+<p><img src="ic_accessibility_black_24dp_2x.png" /></p>
+</div>
+
+<div id="hammer">
+</p><img src="ic_gavel_black_24dp_2x.png" />
+</div>
+
+<div id="wall">
+<h1>[||]</h1>
+</div>
+
+</div>
+<button class="hammer">Use Hammer</button>
+<h1 class="text"></h1>
+</body>
+</html>

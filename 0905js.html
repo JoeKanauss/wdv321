@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+ <script src = "js/jquery-3.2.1.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ 
+<script>
+$(function(){
+	$("#datePicker").datepicker({
+		minDate: (0),
+		showButtonPanel: true
+	});
+});
+$(function(){
+	$("#toolTip").tooltip({
+		content: "This is a tooltip with a 'track' option of TRUE!",
+		items: "#toolTip",
+		track: true, 
+		tooltipClass: "customTooltip"
+	});
+});
+$(function(){
+	$("#selectMenu").selectmenu({
+		icons: {button: " ui-icon-triangle-1-se"},
+		position: {my: "left top", at: "right top", collision: "none"}
+	});
+});
+$(function() {
+	$("#cbr input").checkboxradio({
+		icon: false
+	});
+});
+$(function() {
+	$("#cbr2 input").checkboxradio({
+		icon: false
+	});
+});
+</script> 
+ 
+<style>
+.ui-datepicker{
+	background: linear-gradient(to bottom, #e4dee8 0%, #e4dee8 50%, #000000 100%);
+}
+.ui-datepicker-header{
+	background: #9788a0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button{
+	background: #9788a0;
+	border: none;
+}
+.ui-datepicker-buttonpane button .ui-datepicker-current{
+	background: #9788a0;
+	border: none;
+}
+
+
+.customTooltip{
+	background-color: #e4dee8;
+	box-shadow: none;
+}
+
+
+.ui-selectmenu-button-closed{
+	color: #9788a0;
+	background: #e4dee8;
+}
+.ui-selectmenu-button-closed:hover{
+	color: #e4dee8;
+	background: #9788a0;
+}
+.ui-selectmenu-button.ui-selectmenu-button-open{
+	color: #e4dee8;
+	background: #9788a0;
+	box-shadow: none;
+}
+.ui-selectmenu-menu .ui-menu{
+	background: #e4dee8;
+}
+
+
+.ui-checkboxradio-radio-label:hover{
+	background: #e4dee8;
+}
+.ui-checkboxradio-label:hover{
+	background: #e4dee8;
+}
+.ui-checkboxradio-checked{
+	background: #9788a0;
+	box-shadow: none;
+}
+.ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover{
+	background: #9788a0;
+}
+.ui-checkboxradio-label.ui-checkboxradio-checked:hover{
+	background: #9788a0;
+}
+
+
+#cbr #cbr2{
+	background: rgba(0,0,0,1);
+}
+
+
+</style>
+ 
+</head>
+<body>
+<form>
+<p>Date: <input type="text" id="datePicker" /></p>
+</form>
+
+<p id="toolTip">Tooltip paragraph</p>
+
+<select id="selectMenu">
+<option selected>Select an Option!</option>
+<option>Like This One</option>
+<option>Or This One</option>
+<option>This is a Good One Too</option>
+</select>
+
+<fieldset id="cbr">
+<legend>Select Your Favorite Primary Color:</legend>
+<label for="radio1">Red</label>
+<input type="radio" name="fpc" id="radio1" value="red">
+<label for="radio2">Yellow</label>
+<input type="radio" name="fpc" id="radio2" value="yellow">
+<label for="radio3">Blue</label>
+<input type="radio" name="fpc" id="radio3" value="blue">
+</fieldset>
+
+<fieldset id="cbr2">
+<legend>Select the Secondary Colors You Like:</legend>
+<label for="check1">Orange</label>
+<input type="checkbox" name="check1" id="check1" value="orange">
+<label for="check2">Green</label>
+<input type="checkbox" name="check2" id="check2" value="green">
+<label for="check3">Purple</label>
+<input type="checkbox" name="check3" id="check3" value="purple">
+</fieldset>
+
+</body>
+</html>
